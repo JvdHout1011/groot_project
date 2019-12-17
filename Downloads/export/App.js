@@ -1,24 +1,30 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import firebase from './config.js';
+import { fb, fs } from './config.js';
 // You can import from local files
 import AssetExample from './components/AssetExample';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
 
+const testQuery = fs.collection("users").doc("test");
+testQuery.set({
+  a: "B",
+  c: "D"
+});
+
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.paragraph}>
-          Change code in the editor and watch it change on your phone! Save to get a shareable url.
-        </Text>
-        <Card>
-          <AssetExample />
-        </Card>
-      </View>
+        <View style={styles.container}>
+          <Text style={styles.paragraph}>
+            Change code in the editor and watch it change on your phone! Save to get a shareable url.
+          </Text>
+          <Card>
+            <AssetExample />
+          </Card>
+        </View>
     );
   }
 }

@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+[12:58, 17/12/2019] Jorian S4D: import * as firebase from 'firebase';
+import '@firebase/firestore';
 
 let config = {
     apiKey: "AIzaSyBZklqnYeX6kTQSxclJIrnEFrXfz3nFvFQ",
@@ -11,6 +12,14 @@ let config = {
     measurementId: "G-Z91GJW39DN"
 
 };
-const firebaseApp = firebase.initializeApp(config);
 
-export default firebase;
+try{
+    const firebaseApp = firebase.initializeApp(config);
+} catch(err) {
+    if( ! err.message.includes('already exists') ) {
+        throw err;
+    }
+}
+export const fb = firebase;
+console.log("FS:", fb.firestore);
+export const fs = firebase.firestore();
